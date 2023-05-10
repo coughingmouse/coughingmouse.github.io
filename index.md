@@ -9,8 +9,6 @@
   -->
 </head>
 
-# Mawussu\'s Korean Class
-
 Hello, dear Korean learner!
 
 Here are some Korean books you can download. They are from Sejong Institute.
