@@ -15,7 +15,7 @@ Here are some Korean books you can download. They are from Sejong Institute.
 
 You can download Directly from [Mega](https://mega.nz/folder/jNQwRCDb#rnjWNqz-jpFlK7utkkxotw) or
 [Baidu](https://pan.baidu.com/s/149O09ebsPL-1NnOaxKMxKA?pwd=8c8r).
-Alternatively, you can use [Torrent](https://github.com/coughingmouse/coughingmouse.github.io/raw/main/Korean.torrent) or [[magnet:?xt=urn:btih:d79deb243c8218bd5692858a80ce638cb1d8b5d2&dn=Korean]].
+Alternatively, you can use [Torrent](https://github.com/coughingmouse/coughingmouse.github.io/raw/main/Korean.torrent) or [magnet:?xt=urn:btih:d79deb243c8218bd5692858a80ce638cb1d8b5d2&dn=Korean](magnet:?xt=urn:btih:d79deb243c8218bd5692858a80ce638cb1d8b5d2&dn=Korean).
 
 ______
 
