@@ -4,9 +4,10 @@
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4998552509480295" crossorigin="anonymous"></script>
 </head>
-<body>
-  Hello World!
-  Here are some Korean books you can download. They are from Sejong Institute.
+
+Hello World!
+
+Here are some Korean books you can download. They are from Sejong Institute.
   <p>
   <br />
     Download Directly from 
@@ -20,4 +21,4 @@
   <br />
   </p>
   [Git repo](https://github.com/coughingmouse)
-</body>
+
