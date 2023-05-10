@@ -6,9 +6,7 @@
 </head>
 <body>
   Hello World!
-  <p>
   Here are some Korean books you can download. They are from Sejong Institute.
-  </p>
   <p>
   <br />
     Download Directly from 
@@ -21,4 +19,5 @@
   <a href="magnet:?xt=urn:btih:d79deb243c8218bd5692858a80ce638cb1d8b5d2&dn=Korean">magnet:?xt=urn:btih:d79deb243c8218bd5692858a80ce638cb1d8b5d2&dn=Korean</a>
   <br />
   </p>
+  [Git repo](https://github.com/coughingmouse)
 </body>
