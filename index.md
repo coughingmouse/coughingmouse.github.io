@@ -1,10 +1,10 @@
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
-<meta http-equiv="Refresh" content="0; url='https://coughingmouse.readthedocs.io/'" />
 
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4998552509480295" crossorigin="anonymous"></script>
+   <meta http-equiv="Refresh" content="0; url='https://coughingmouse.readthedocs.io/'" />
 </head>
 
 Hello World!
