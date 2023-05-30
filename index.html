@@ -213,13 +213,13 @@
             } else {
               countSpan.textContent = this.count;
             }
-            if (navigator.setAppBadge) {
+            // if (navigator.setAppBadge) {
               try {
                 navigator.setAppBadge(this.count);
               } catch (e) {
                 console.log("navigator.setAppBadge failed");
               }
-            }
+            // }
           }
         },
         decrement: function () {
