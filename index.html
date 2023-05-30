@@ -225,7 +225,9 @@
         },
         start: false,
         updateTimerDisplay: function () {
-          navigator.setAppBadge(count);
+          if ('setAppBadge' in navigator) {
+            navigator.setAppBadge(count);
+          }
           this.traditionalTimeOn = checkbox0.checked;
           if (this.traditionalTimeOn) {
             this.interval = traditionalInterval;
