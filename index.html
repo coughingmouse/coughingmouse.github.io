@@ -127,7 +127,8 @@
       // Update the clock every second (1000 milliseconds)
       const updateInterval = 1000;
       const maxCount = 6;
-      const defaultInterval = 3;864;
+      const defaultInterval = 3;
+      864;
       const traditionalInterval = 15 * 60;
       const defaultRestInterval = 4;
       const traditionalRestInterval = 5;
@@ -161,6 +162,9 @@
           let timeTimer = setInterval(showTime, updateInterval);
         },
         stopTimer: function () {
+          this.reversed = false;
+          this.count = 0;
+          this.timer = 0;
           this.timerOn = false;
         },
         printTime: function () {
@@ -208,7 +212,6 @@
               countSpan.textContent = restMessage;
             } else {
               countSpan.textContent = this.count;
-
             }
             if (navigator.setAppBadge) {
               try {
@@ -228,12 +231,10 @@
             }
             if (this.count == 0) {
               this.stopTimer();
-              this.timer = 0;
             }
           }
           this.printTime();
           this.printCount();
-
         },
         increment: function () {
           this.timerOn = true;
@@ -245,9 +246,6 @@
             this.endTime = this.timeNow() + this.count * this.interval;
             this.timer = this.endTime - this.timeNow();
           } else if (!(this.count > 0)) {
-            this.count = 0;
-            this.reversed = false;
-            this.timer = 0;
             this.stopTimer();
           }
           this.printTime();
@@ -271,9 +269,13 @@
           if (this.timer === 0) {
             playAudio();
             if (Notification.permission === "granted") {
-              const notification = new Notification("Battery out!");
-            }
-            else if (Notification.permission === "denied") {
+              let notification = new Notification("Battery out!");
+              notification.onclick = () => {
+                this.stopTimer();
+                this.printTime();
+                this.printCount();
+              };
+            } else if (Notification.permission === "denied") {
               Notification.requestPermission();
             }
           }
