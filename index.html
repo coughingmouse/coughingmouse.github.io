@@ -204,6 +204,9 @@
           }
           this.printTime();
           countSpan.textContent = this.count;
+          if ('setAppBadge' in navigator) {
+            navigator.setAppBadge(count);
+          }
         },
         increment: function () {
           this.timerOn = true;
