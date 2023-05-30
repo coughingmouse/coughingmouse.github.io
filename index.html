@@ -216,11 +216,11 @@
               countSpan.textContent = this.count;
             }
             // if (navigator.setAppBadge) {
-              try {
-                navigator.setAppBadge(this.count);
-              } catch (e) {
-                console.log("navigator.setAppBadge failed");
-              }
+            try {
+              navigator.setAppBadge(this.count);
+            } catch (e) {
+              console.log("navigator.setAppBadge failed");
+            }
             // }
           }
         },
@@ -261,29 +261,25 @@
           } else {
             this.interval = defaultInterval;
           }
-          this.printTime();
-          this.printCount();
-
+          
           if (!this.timerOn) {
             return 0;
           }
 
           this.timer = this.endTime - this.timeNow();
           if (this.timer === 0) {
+            this.printTime();
             playAudio();
             if (Notification.permission === "granted") {
               try {
                 let notification = new Notification("Battery out!");
                 notification.onclick = () => {
                   this.stopTimer();
-                } 
+                };
               } catch (e) {
-                  console.log("new Notification failed");
+                console.log("New notification failed");
               }
-            } 
-            // else if (Notification.permission === "denied") {
-            //   Notification.requestPermission();
-            // }
+            }
           }
           if (this.timer < 0) {
             this.reversed = true;
@@ -292,7 +288,6 @@
           }
 
           this.printTime();
-
           this.printCount();
         },
       };
