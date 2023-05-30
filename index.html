@@ -225,9 +225,6 @@
         },
         start: false,
         updateTimerDisplay: function () {
-          if ('setAppBadge' in navigator) {
-            navigator.setAppBadge(count);
-          }
           this.traditionalTimeOn = checkbox0.checked;
           if (this.traditionalTimeOn) {
             this.interval = traditionalInterval;
@@ -265,6 +262,9 @@
               countSpan.textContent = restMessage;
             } else {
               countSpan.textContent = this.count;
+              if ('setAppBadge' in navigator) {
+                navigator.setAppBadge(count);
+              }
             }
           }
         },
