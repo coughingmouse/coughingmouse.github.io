@@ -29,6 +29,8 @@ button {
   justify-content: center;
   align-content: center;
   text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 
 }
 input[type="checkbox"] {
