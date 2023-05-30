@@ -8,6 +8,8 @@ body {
   display: grid;
   place-items: center;
   text-align: center;
+  overflow: hidden;
+  position: fixed;
 }
 
 .container {
