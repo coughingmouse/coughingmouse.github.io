@@ -256,7 +256,7 @@
           if (this.timer === 0) {
             playAudio();
             if (Notification.permission === "granted") {
-              const notification = Notification("Battery out!");
+              const notification = new Notification("Battery out!");
             }
             else if (Notification.permission === "denied") {
               Notification.requestPermission();
