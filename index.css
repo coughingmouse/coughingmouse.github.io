@@ -26,8 +26,10 @@ button {
   width: 60px;
   height: 60px;
   font-size: 30px;
-  display: grid;
-  place-items: center;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  border: none;
 }
 input[type="checkbox"] {
   width: 30px;
