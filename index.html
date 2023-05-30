@@ -190,6 +190,19 @@
             ).padStart(3, "0")}`;
           }
         },
+        printCount: function () {
+          if (Math.floor(this.timer) % this.interval == 0) {
+            this.count = Math.floor(this.timer) / this.interval;
+            if (this.count < 0) {
+              countSpan.textContent = restMessage;
+            } else {
+              countSpan.textContent = this.count;
+              if ('setAppBadge' in navigator) {
+                navigator.setAppBadge(this.count);
+              }
+            }
+          }
+        }
         decrement: function () {
           if (this.count > 0) {
             if (!this.reversed) {
@@ -203,10 +216,8 @@
             }
           }
           this.printTime();
-          countSpan.textContent = this.count;
-          if ('setAppBadge' in navigator) {
-            navigator.setAppBadge(count);
-          }
+          this.printCount();
+          
         },
         increment: function () {
           this.timerOn = true;
@@ -224,10 +235,7 @@
             this.stopTimer();
           }
           this.printTime();
-          countSpan.textContent = this.count;
-          if ('setAppBadge' in navigator) {
-            navigator.setAppBadge(count);
-          }
+          this.printCount();
         },
         start: false,
         updateTimerDisplay: function () {
@@ -259,20 +267,9 @@
             this.reversed = false;
           }
 
-          countSpan.textContent = this.count;
           this.printTime();
 
-          if (Math.floor(this.timer) % this.interval == 0) {
-            this.count = Math.floor(this.timer) / this.interval;
-            if (this.count < 0) {
-              countSpan.textContent = restMessage;
-            } else {
-              countSpan.textContent = this.count;
-              if ('setAppBadge' in navigator) {
-                navigator.setAppBadge(count);
-              }
-            }
-          }
+          this.printCount();
         },
       };
 
