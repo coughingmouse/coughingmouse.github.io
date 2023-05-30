@@ -621,7 +621,7 @@
             this.printTime();
             playAudio();
             try {
-              let notification = new Notification("Battery out!");
+              const notification = new Notification("Battery out!");
               notification.onclick = () => {
                 this.stopTimer();
               };
