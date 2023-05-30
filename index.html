@@ -166,6 +166,8 @@
           this.count = 0;
           this.timer = 0;
           this.timerOn = false;
+          this.printTime();
+          this.printCount();
         },
         printTime: function () {
           if (this.traditionalTimeOn && !this.reversed) {
@@ -273,8 +275,6 @@
                 let notification = new Notification("Battery out!");
                 notification.onclick = () => {
                   this.stopTimer();
-                  this.printTime();
-                  this.printCount();
                 } 
               } catch (e) {
                   console.log("new Notification failed");
