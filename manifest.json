@@ -1,0 +1,13 @@
+{
+   "name": "Battery",
+   "short_name": "battery",
+   "display": "standalone",
+   "orientation": "portrait",
+   "start_url": "https://coughingmouse.github.io/",
+   "scope": "https://coughingmouse.github.io/",
+   "icons": [{
+        "src": "/icons/icon.png",
+        "sizes": "10242x1024",
+        "type": "image/png"
+    }]
+}
