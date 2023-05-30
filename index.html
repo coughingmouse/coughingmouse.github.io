@@ -197,9 +197,10 @@
               countSpan.textContent = restMessage;
             } else {
               countSpan.textContent = this.count;
-              if ('setAppBadge' in navigator) {
-                navigator.setAppBadge(this.count);
-              }
+              
+            }
+            if ('setAppBadge' in navigator) {
+              navigator.setAppBadge(this.count);
             }
           }
         }
