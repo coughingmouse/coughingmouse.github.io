@@ -25,14 +25,7 @@ button {
   width: 60px;
   height: 60px;
   font-size: 30px;
-  margin: auto;
-  padding: 0;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
-
+  margin: 0 0 0 0;
 }
 input[type="checkbox"] {
   width: 30px;
