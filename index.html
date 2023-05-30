@@ -269,15 +269,20 @@
           if (this.timer === 0) {
             playAudio();
             if (Notification.permission === "granted") {
-              let notification = new Notification("Battery out!");
-              notification.onclick = () => {
-                this.stopTimer();
-                this.printTime();
-                this.printCount();
-              };
-            } else if (Notification.permission === "denied") {
-              Notification.requestPermission();
-            }
+              try {
+                let notification = new Notification("Battery out!");
+                notification.onclick = () => {
+                  this.stopTimer();
+                  this.printTime();
+                  this.printCount();
+                } 
+              } catch (e) {
+                  console.log("new Notification failed");
+              }
+            } 
+            // else if (Notification.permission === "denied") {
+            //   Notification.requestPermission();
+            // }
           }
           if (this.timer < 0) {
             this.reversed = true;
@@ -319,7 +324,11 @@
       });
 
       incrementBtn.addEventListener("click", () => {
-        let promise = Notification.requestPermission();
+        try {
+          Notification.requestPermission();
+        } catch (e) {
+          console.log("Notification requestPermisson failed");
+        }
         counter.increment();
       });
 
