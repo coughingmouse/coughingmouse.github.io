@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline'"
+    />
+
+    <link rel="stylesheet" type="text/css" href="index.css" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <title>Battery</title>
+  </head>
+  <body>
+    <div class="container">
+      <button id="incrementBtn" onclick="play()">+</button>
+      <span id="count">0</span>
+      <button id="decrementBtn" onclick="play()">-</button>
+    </div>
+
+    <div class="container">
+      <span id="timer">#00T000</span>
+    </div>
+    <div class="container">
+      <label for="checkbox0">
+        <input id="checkbox0" type="checkbox" />
+        Use hh:mm:ss
+      </label>
+    </div>
+
+    <script defer charset="utf-8">
+      const decrementBtn = document.getElementById("decrementBtn");
+      const incrementBtn = document.getElementById("incrementBtn");
+      const countSpan = document.getElementById("count");
+      const timerSpan = document.getElementById("timer");
+      const checkbox0 = document.getElementById("checkbox0");
+      const restMessage = "-1";
+
+      const audio = new Audio(
+        "audio/bicycle_bell_from_bikekitchen_augsburg_01-83659.mp3"
+      );
+
+      // Clock object constructor
+      class Clock {
+        constructor() {
+          this.clockElement = null;
+        }
+        // Method to initialize the clock element
+        init(elementId) {
+          this.clockElement = document.getElementById(elementId);
+        }
+        // Method to update the clock display
+        updateClock() {
+          let now = new Date();
+
+          // Update the clock element with the new time
+          if (this.clockElement) {
+            this.clockElement.textContent = timeString;
+          }
+          return now;
+        }
+      }
+
+      // Create a clock object
+      let clock = new Clock();
+
+      // Initialize the clock element
+      clock.init("clock");
+
+      // Update the clock every second (1000 milliseconds)
+      const updateInterval = 1000;
+      const maxCount = 6;
+      const defaultInterval = 864;
+      const traditionalInterval = 15 * 60;
+      const defaultRestInterval = 4;
+      const traditionalRestInterval = 5;
+
+      let updateIntervalID = setInterval(function () {
+        clock.updateClock();
+      }, updateInterval);
+
+      let counter = {
+        interval: defaultInterval,
+        reversed: false,
+        timer: 0,
+        count: 0,
+        endTime: 0,
+        timerOn: false,
+        traditionalTimeOn: false,
+        timeNow: function () {
+          return parseInt(
+            clock.updateClock().getTime().toString().slice(0, -3)
+          );
+        },
+        startTimer: function () {
+          clearInterval(this.updateTimerDisplayIdle);
+          clearInterval(this.timeTimer);
+          // Set the initial clock display
+          endTime = this.timeNow();
+
+          let showTime = setInterval(() => {
+            this.updateTimerDisplay();
+          }, updateInterval);
+          let timeTimer = setInterval(showTime, updateInterval);
+        },
+        stopTimer: function () {
+          this.timerOn = false;
+        },
+        printTime: function () {
+          if (this.traditionalTimeOn && !this.reversed) {
+            timerSpan.textContent = `${String(
+              Math.floor(this.timer / 60 / 60)
+            ).padStart(2, "0")}:${String(
+              Math.floor(this.timer / 60) % 60
+            ).padStart(2, "0")}:${String(Math.floor(this.timer) % 60).padStart(
+              2,
+              "0"
+            )}`;
+          } else if (this.traditionalTimeOn && this.reversed) {
+            this.count = restMessage;
+            countSpan.textContent = this.count;
+            timerSpan.textContent = `-${String(
+              Math.floor(-this.timer / 60 / 60)
+            ).padStart(2, "0")}:${String(
+              Math.floor(-this.timer / 60) % 60
+            ).padStart(2, "0")}:${String(Math.floor(-this.timer) % 60).padStart(
+              2,
+              "0"
+            )}`;
+          } else if (!this.traditionalTimeOn && !this.reversed) {
+            timerSpan.textContent = `\#${String(
+              Math.floor(this.timer / 864) % 864
+            ).padStart(2, "0")}T${String(Math.floor(this.timer) % 864).padStart(
+              3,
+              "0"
+            )}`;
+          } else {
+            this.count = restMessage;
+            countSpan.textContent = this.count;
+            timerSpan.textContent = `-\#${String(
+              Math.floor(-this.timer / 864) % 864
+            ).padStart(2, "0")}T${String(
+              Math.floor(-this.timer) % 864
+            ).padStart(3, "0")}`;
+          }
+        },
+        decrement: function () {
+          if (this.count > 0) {
+            if (!this.reversed) {
+              this.count--;
+              this.endTime = this.timeNow() + this.count * this.interval;
+              this.timer = this.endTime - this.timeNow();
+            }
+            if (this.count == 0) {
+              this.stopTimer();
+              this.timer = 0;
+            }
+          }
+          this.printTime();
+          countSpan.textContent = this.count;
+        },
+        increment: function () {
+          this.timerOn = true;
+          if (-1 < this.count && this.count < maxCount) {
+            this.count++;
+            this.endTime = this.timeNow() + this.count * this.interval;
+            this.timer = this.endTime - this.timeNow();
+          } else if (this.count == maxCount) {
+            this.endTime = this.timeNow() + this.count * this.interval;
+            this.timer = this.endTime - this.timeNow();
+          } else if (!(this.count > 0)) {
+            this.count = 0;
+            this.reversed = false;
+            this.timer = 0;
+            this.stopTimer();
+          }
+          this.printTime();
+          countSpan.textContent = this.count;
+        },
+        start: false,
+        updateTimerDisplay: function () {
+          this.traditionalTimeOn = checkbox0.checked;
+          if (this.traditionalTimeOn) {
+            this.interval = traditionalInterval;
+          } else {
+            this.interval = defaultInterval;
+          }
+          this.printTime();
+
+          if (!this.timerOn) {
+            return 0;
+          }
+
+          this.timer = this.endTime - this.timeNow();
+          if (this.timer === 0) {
+            playAudio();
+          }
+          if (this.timer < 0) {
+            this.reversed = true;
+          } else {
+            this.reversed = false;
+          }
+
+          countSpan.textContent = this.count;
+          this.printTime();
+
+          if (Math.floor(this.timer) % this.interval == 0) {
+            this.count = Math.floor(this.timer) / this.interval;
+            if (this.count < 0) {
+              countSpan.textContent = restMessage;
+            } else {
+              countSpan.textContent = this.count;
+            }
+          }
+        },
+      };
+
+      let playAudio = () => {};
+
+      function waitForChange() {
+        return new Promise((resolve) => {
+          playAudio = () => {
+            resolve();
+          };
+        });
+      }
+
+      async function play() {
+        // Very convoluted: playing audio at first
+        // and using the function call from button to play audio
+        // All this to avoid Tauri acting up weird...
+        audio.muted = true;
+        audio.autoplay = true;
+        await Promise.all([audio.play(), waitForChange()]);
+        audio.pause();
+        audio.currentTime = 0;
+        audio.muted = false;
+        audio.play();
+      }
+
+      decrementBtn.addEventListener("click", () => {
+        counter.decrement();
+      });
+
+      incrementBtn.addEventListener("click", () => {
+        counter.increment();
+      });
+
+      document.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.key === "-") {
+          decrementBtn.click();
+        } else if (event.key === "Backspace") {
+          decrementBtn.click();
+        } else if (event.key === "Delete") {
+          decrementBtn.click();
+        } else if (event.key === "ArrowDown") {
+          decrementBtn.click();
+        } else if (event.key === "ArrowLeft") {
+          decrementBtn.click();
+        }
+      });
+      document.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.key === "+") {
+          incrementBtn.click();
+        } else if (event.key === " ") {
+          incrementBtn.click();
+        } else if (event.key === "Enter") {
+          incrementBtn.click();
+        } else if (event.key === "ArrowUp") {
+          incrementBtn.click();
+        } else if (event.key === "ArrowRight") {
+          incrementBtn.click();
+        }
+      });
+
+      document.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.key === "u") {
+          checkbox0.click();
+          counter.updateTimerDisplay();
+        } else if (event.key === "U") {
+          checkbox0.click();
+          counter.updateTimerDisplay();
+        }
+      });
+
+      checkbox0.addEventListener("click", () => {
+        counter.updateTimerDisplay();
+      });
+
+      counter.startTimer();
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4998552509480295" crossorigin="anonymous"></script>
+  </body>
+</html>
