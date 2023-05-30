@@ -225,6 +225,9 @@
           }
           this.printTime();
           countSpan.textContent = this.count;
+          if ('setAppBadge' in navigator) {
+            navigator.setAppBadge(count);
+          }
         },
         start: false,
         updateTimerDisplay: function () {
