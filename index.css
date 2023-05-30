@@ -3,24 +3,12 @@
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   height: 100vh; /* use 100% of the height of the viewport */
   display: grid;
   place-items: center;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  justify-content: center;
-  /* margin-top: 10px; */
-  font-size: 30px;
+  overflow: hidden;
 }
 
 .container {
@@ -38,7 +26,6 @@ button {
   width: 60px;
   height: 60px;
   font-size: 30px;
-  padding: 0;
 }
 
 input[type="checkbox"] {
