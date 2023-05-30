@@ -1,6 +1,6 @@
 {
    "name": "Battery",
-   "short_name": "battery",
+   "short_name": "Battery",
    "display": "standalone",
    "orientation": "portrait",
    "start_url": "https://coughingmouse.github.io/",
