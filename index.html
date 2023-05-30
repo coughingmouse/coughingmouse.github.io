@@ -621,7 +621,10 @@
             this.printTime();
             playAudio();
             try {
-              const notification = new Notification("Battery out!");
+              const notification = new Notification('Battery ran out!', {
+                body: 'Click to reset Battery',
+                icon: 'icons/icon.png'
+              });
               notification.onclick = () => {
                 this.stopTimer();
               };
