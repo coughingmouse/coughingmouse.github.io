@@ -447,19 +447,13 @@
       }
 
       // const screenOrientation = screen.orientation;
-        try {
-          screen.orientation.lock("portrait-primary");
-        } catch (e) {
-          console.log("ScreenOrientation.lock failed");
-        }
+      try {
+        screen.orientation.lock("portrait-primary");
+      } catch (e) {
+        console.log("ScreenOrientation.lock failed");
+      }
       console.log(screen.orientation.type);
 
-      const registration = await navigator.serviceWorker.register(
-        "serviceworker.js",
-        {
-          scope: "./",
-        }
-      );
       // Clock object constructor
       class Clock {
         constructor() {
@@ -490,8 +484,9 @@
       // Update the clock every second (1000 milliseconds)
       const updateInterval = 1000;
       const maxCount = 6;
-      const defaultInterval = 3;864;
-      
+      const defaultInterval = 3;
+      864;
+
       const traditionalInterval = 15 * 60;
       const defaultRestInterval = 4;
       const traditionalRestInterval = 5;
@@ -513,7 +508,13 @@
             clock.updateClock().getTime().toString().slice(0, -3)
           );
         },
-        startTimer: function () {
+        startTimer: async function () {
+          const registration = await navigator.serviceWorker.register(
+            "serviceworker.js",
+            {
+              scope: "./",
+            }
+          );
           clearInterval(this.updateTimerDisplayIdle);
           clearInterval(this.timeTimer);
           endTime = this.timeNow();
@@ -616,7 +617,7 @@
           this.printCount();
         },
         start: false,
-        updateTimerDisplay: function () {
+        updateTimerDisplay: async function () {
           this.traditionalTimeOn = checkbox0.checked;
           if (this.traditionalTimeOn) {
             this.interval = traditionalInterval;
@@ -646,7 +647,7 @@
               console.log("New notification failed");
             }
             try {
-              registration.showNotification("Battery ran out!", {
+              await registration.showNotification("Battery ran out!", {
                 body: "Click to reset Battery",
                 icon: "icons/icon.png",
                 vibrate: true,
