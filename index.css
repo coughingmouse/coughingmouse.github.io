@@ -25,7 +25,12 @@ body {
 button {
   width: 60px;
   height: 60px;
-  font-size: 30px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  align-content: center;
 }
 
 input[type="checkbox"] {
