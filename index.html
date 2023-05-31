@@ -626,7 +626,11 @@
             this.printTime();
             playAudio();
             try {
-              let notification = new Notification("Battery out!");
+              const notification = new Notification('Battery ran out!', {
+                body: 'Click to reset Battery',
+                icon: 'icons/icon.png',
+                vibrate: true
+              });
               notification.onclick = () => {
                 this.stopTimer();
               };
@@ -672,9 +676,9 @@
         counter.decrement();
       });
 
-      incrementBtn.addEventListener("click", () => {
+      incrementBtn.addEventListener("click", async () => {
         try {
-          Notification.requestPermission();
+          await Notification.requestPermission();
         } catch (e) {
           console.log("Notification requestPermisson failed");
         }
