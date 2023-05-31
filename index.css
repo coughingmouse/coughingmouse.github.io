@@ -23,8 +23,8 @@ body {
 }
 
 button {
-  width: 60px;
-  height: 60px;
+  width: 10vh;
+  height: 10vh;
   font-size: 40px;
   display: flex;
   align-items: center;
