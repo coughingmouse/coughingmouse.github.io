@@ -616,7 +616,7 @@
           this.printCount();
         },
         start: false,
-        updateTimerDisplay: async function () {
+        updateTimerDisplay: function () {
           this.traditionalTimeOn = checkbox0.checked;
           if (this.traditionalTimeOn) {
             this.interval = traditionalInterval;
@@ -646,7 +646,7 @@
               console.log("New notification failed");
             }
             try {
-              await registration.showNotification("Battery ran out!", {
+              registration.showNotification("Battery ran out!", {
                 body: "Click to reset Battery",
                 icon: "icons/icon.png",
                 vibrate: true,
