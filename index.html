@@ -554,7 +554,7 @@
               "0"
             )}`;
           } else if (!this.traditionalTimeOn && !this.reversed) {
-            timerSpan.textContent = `\#${String(
+            timerSpan.textContent = `EB${String(
               Math.floor(this.timer / 864) % 864
             ).padStart(2, "0")}T${String(Math.floor(this.timer) % 864).padStart(
               3,
@@ -563,7 +563,7 @@
           } else {
             this.count = restMessage;
             countSpan.textContent = this.count;
-            timerSpan.textContent = `-\#${String(
+            timerSpan.textContent = `-EB${String(
               Math.floor(-this.timer / 864) % 864
             ).padStart(2, "0")}T${String(
               Math.floor(-this.timer) % 864
