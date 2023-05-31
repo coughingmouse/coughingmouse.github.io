@@ -647,7 +647,7 @@
               console.log("New notification failed");
             }
             try {
-              await registration.showNotification("Battery ran out!", {
+              await this.registration.showNotification("Battery ran out!", {
                 body: "Click to reset Battery",
                 icon: "icons/icon.png",
                 vibrate: true,
