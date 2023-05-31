@@ -647,12 +647,12 @@
               console.log("New notification failed");
             }
             try {
-              await this.registration.showNotification("Battery ran out!", {
+              const iosNotification = await this.registration.showNotification("Battery ran out!", {
                 body: "Click to reset Battery",
                 icon: "icons/icon.png",
                 vibrate: true,
               });
-              notification.onclick = () => {
+              iosNotification.onclick = () => {
                 this.stopTimer();
               };
             } catch (e) {
