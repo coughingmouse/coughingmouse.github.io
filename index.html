@@ -446,6 +446,7 @@
         console.log("navigator.setAppBadge failed");
       }
       try {
+        const ScreenOrientation = window.screen.orientation;
         ScreenOrientation.lock("portrait-primary");
       } catch (e) {
         console.log("ScreenOrientation.lock failed");
