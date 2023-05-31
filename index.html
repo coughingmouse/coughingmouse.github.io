@@ -484,8 +484,7 @@
       // Update the clock every second (1000 milliseconds)
       const updateInterval = 1000;
       const maxCount = 6;
-      const defaultInterval = 864;
-      864;
+      const defaultInterval = 900;
 
       const traditionalInterval = 15 * 60;
       const defaultRestInterval = 4;
@@ -534,40 +533,39 @@
         },
         printTime: function () {
           if (this.traditionalTimeOn && !this.reversed) {
-            timerSpan.textContent = `${String(
+            timerSpan.textContent = `PT${String(
               Math.floor(this.timer / 60 / 60)
-            ).padStart(2, "0")}:${String(
+            ).padStart(2, "0")}H${String(
               Math.floor(this.timer / 60) % 60
-            ).padStart(2, "0")}:${String(Math.floor(this.timer) % 60).padStart(
+            ).padStart(2, "0")}M${String(Math.floor(this.timer) % 60).padStart(
               2,
               "0"
-            )}`;
+            )}S`;
           } else if (this.traditionalTimeOn && this.reversed) {
             this.count = restMessage;
             countSpan.textContent = this.count;
-            timerSpan.textContent = `-${String(
+            timerSpan.textContent = `-PT${String(
               Math.floor(-this.timer / 60 / 60)
-            ).padStart(2, "0")}:${String(
+            ).padStart(2, "0")}H${String(
               Math.floor(-this.timer / 60) % 60
-            ).padStart(2, "0")}:${String(Math.floor(-this.timer) % 60).padStart(
+            ).padStart(2, "0")}M${String(Math.floor(-this.timer) % 60).padStart(
               2,
               "0"
-            )}`;
+            )}S`;
           } else if (!this.traditionalTimeOn && !this.reversed) {
-            timerSpan.textContent = `EB${String(
-              Math.floor(this.timer / 864) % 864
-            ).padStart(2, "0")}T${String(Math.floor(this.timer) % 864).padStart(
-              3,
-              "0"
-            )}`;
+            timerSpan.textContent = `PT${String(
+              Math.floor(this.timer / 3600) % 3600
+            ).padStart(2, "0")}H${String(
+              Math.floor(this.timer) % 3600
+            ).padStart(4, "0")}S`;
           } else {
             this.count = restMessage;
             countSpan.textContent = this.count;
-            timerSpan.textContent = `-EB${String(
-              Math.floor(-this.timer / 864) % 864
-            ).padStart(2, "0")}T${String(
-              Math.floor(-this.timer) % 864
-            ).padStart(3, "0")}`;
+            timerSpan.textContent = `-PT${String(
+              Math.floor(-this.timer / 3600) % 3600
+            ).padStart(2, "0")}H${String(
+              Math.floor(-this.timer) % 3600
+            ).padStart(4, "0")}S`;
           }
         },
         printCount: function () {
@@ -647,11 +645,14 @@
               console.log("New notification failed");
             }
             try {
-              const iosNotification = await this.registration.showNotification("Battery ran out!", {
-                body: "Click to reset Battery",
-                icon: "icons/icon.png",
-                vibrate: true,
-              });
+              const iosNotification = await this.registration.showNotification(
+                "Battery ran out!",
+                {
+                  body: "Click to reset Battery",
+                  icon: "icons/icon.png",
+                  vibrate: true,
+                }
+              );
               iosNotification.onclick = () => {
                 this.stopTimer();
               };
