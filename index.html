@@ -445,6 +445,12 @@
       } catch (e) {
         console.log("navigator.setAppBadge failed");
       }
+      try {
+        const ScreenOrientation = screen.orientation;
+        ScreenOrientation.lock("portrait-primary");
+      } catch (e) {
+        console.log("ScreenOrientation.lock failed");
+      }
 
       // Clock object constructor
       class Clock {
@@ -502,7 +508,6 @@
         startTimer: function () {
           clearInterval(this.updateTimerDisplayIdle);
           clearInterval(this.timeTimer);
-          // Set the initial clock display
           endTime = this.timeNow();
 
           let showTime = setInterval(() => {
